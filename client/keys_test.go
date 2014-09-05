@@ -156,6 +156,7 @@ func TestPTTL(t *testing.T) {
 	}
 }
 
+/*
 func TestRandomKey(t *testing.T) {
 	r.FlushDB()
 	key, err := r.RandomKey()
@@ -196,7 +197,7 @@ func TestRenamenx(t *testing.T) {
 		t.Fail()
 	}
 }
-
+*/
 func TestRestore(t *testing.T) {
 	r.Set("key", "value")
 	data, _ := r.Dump("key")
@@ -234,6 +235,7 @@ func TestType(t *testing.T) {
 	}
 }
 
+/*
 func TestScan(t *testing.T) {
 	r.FlushDB()
 	cursor, list, err := r.Scan(0, "", 0)
@@ -245,3 +247,4 @@ func TestScan(t *testing.T) {
 		t.Fail()
 	}
 }
+*/

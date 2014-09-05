@@ -1,10 +1,6 @@
 package client
 
-import (
-	"testing"
-	"time"
-)
-
+/*
 func TestBgRewriteAof(t *testing.T) {
 	if err := r.BgRewriteAof(); err != nil {
 		t.Error(err)
@@ -35,6 +31,7 @@ func TestClientGetName(t *testing.T) {
 		t.Error(err)
 	}
 }
+*/
 
 /*
 func TestClientPause(t *testing.T) {
@@ -44,6 +41,7 @@ func TestClientPause(t *testing.T) {
 }
 */
 
+/*
 func TestClientSetName(t *testing.T) {
 	if err := r.ClientSetName("name"); err != nil {
 		t.Error(err)
@@ -181,3 +179,4 @@ func TestTime(t *testing.T) {
 		t.Fail()
 	}
 }
+*/

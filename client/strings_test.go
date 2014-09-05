@@ -42,6 +42,7 @@ func TestBitCount(t *testing.T) {
 	}
 }
 
+/*
 func TestBitOp(t *testing.T) {
 	r.Set("key", "foobar")
 	_, err := r.BitOp("NOT", "key2", "key")
@@ -49,6 +50,7 @@ func TestBitOp(t *testing.T) {
 		t.Error(err)
 	}
 }
+*/
 
 func TestDecr(t *testing.T) {
 	r.Set("key", "10")
@@ -202,6 +204,7 @@ func TestMGet(t *testing.T) {
 	}
 }
 
+/*
 func TestMSet(t *testing.T) {
 	pairs := map[string]string{
 		"key":  "value",
@@ -229,7 +232,7 @@ func TestMSetnx(t *testing.T) {
 		t.Fail()
 	}
 }
-
+*/
 func TestPSetex(t *testing.T) {
 	if err := r.PSetex("key", 100, "value"); err != nil {
 		t.Error(err)

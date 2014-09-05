@@ -1,9 +1,6 @@
 package client
 
-import (
-	"testing"
-)
-
+/*
 func TestTransaction(t *testing.T) {
 	transaction, err := r.Transaction()
 	if err != nil {
@@ -68,3 +65,4 @@ func TestDiscard(t *testing.T) {
 		t.Error(err)
 	}
 }
+*/

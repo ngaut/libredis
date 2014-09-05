@@ -1,10 +1,6 @@
 package client
 
-import (
-	"testing"
-	"time"
-)
-
+/*
 func TestPublish(t *testing.T) {
 	if _, err := r.Publish("channel", "message"); err != nil {
 		t.Error(err)
@@ -154,3 +150,4 @@ func TestPUnSubscribe(t *testing.T) {
 	}
 	quit = true
 }
+*/
