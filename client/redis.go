@@ -411,7 +411,7 @@ const (
 	DefaultNetwork = "tcp"
 
 	// DefaultAddress is the default value of address(host:port)
-	DefaultAddress = ":6379"
+	DefaultAddress = ":9000"
 
 	// DefaultTimeout is the default value of connect timeout
 	DefaultTimeout = 15 * time.Second

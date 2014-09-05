@@ -64,6 +64,7 @@ func TestExpireAt(t *testing.T) {
 	}
 }
 
+/*
 func TestKeys(t *testing.T) {
 	r.FlushDB()
 	keys, err := r.Keys("*")
@@ -110,6 +111,7 @@ func TestObject(t *testing.T) {
 	}
 }
 
+*/
 func TestPersist(t *testing.T) {
 	r.Set("key", "value")
 	r.Expire("key", 500)
