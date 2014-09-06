@@ -259,17 +259,17 @@ func TestZScan(t *testing.T) {
 }
 
 func TestZInterStore(t *testing.T) {
-	r.Del("zset1", "zset2")
-	r.ZAddVariadic("zset1", map[string]float64{
+	r.Del(encodeKeyWithTag("zset1"), encodeKeyWithTag("zset2"))
+	r.ZAddVariadic(encodeKeyWithTag("zset1"), map[string]float64{
 		"one": 1,
 		"two": 2,
 	})
-	r.ZAddVariadic("zset2", map[string]float64{
+	r.ZAddVariadic(encodeKeyWithTag("zset2"), map[string]float64{
 		"one":   1,
 		"two":   2,
 		"three": 3,
 	})
-	if n, err := r.ZInterStore("out", []string{"zset1", "zset2"}, []int{2, 3}, ""); err != nil {
+	if n, err := r.ZInterStore(encodeKeyWithTag("out"), []string{encodeKeyWithTag("zset1"), encodeKeyWithTag("zset2")}, []int{2, 3}, ""); err != nil {
 		t.Error(err)
 	} else if n != 2 {
 		t.Fail()
@@ -277,17 +277,17 @@ func TestZInterStore(t *testing.T) {
 }
 
 func TestZUnionStore(t *testing.T) {
-	r.Del("zset1", "zset2")
-	r.ZAddVariadic("zset1", map[string]float64{
+	r.Del(encodeKeyWithTag("zset1"), encodeKeyWithTag("zset2"))
+	r.ZAddVariadic(encodeKeyWithTag("zset1"), map[string]float64{
 		"one": 1,
 		"two": 2,
 	})
-	r.ZAddVariadic("zset2", map[string]float64{
+	r.ZAddVariadic(encodeKeyWithTag("zset2"), map[string]float64{
 		"one":   1,
 		"two":   2,
 		"three": 3,
 	})
-	if n, err := r.ZUnionStore("out", []string{"zset1", "zset2"}, []int{2, 3}, ""); err != nil {
+	if n, err := r.ZUnionStore(encodeKeyWithTag("out"), []string{encodeKeyWithTag("zset1"), encodeKeyWithTag("zset2")}, []int{2, 3}, ""); err != nil {
 		t.Error(err)
 	} else if n != 3 {
 		t.Fail()

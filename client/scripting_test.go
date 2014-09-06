@@ -39,6 +39,7 @@ func TestEval(t *testing.T) {
 	}
 }
 
+/*
 func TestEvalSha(t *testing.T) {
 	r.ScriptFlush()
 	sha1, _ := r.ScriptLoad("return 10")
@@ -80,3 +81,4 @@ func TestScriptKill(t *testing.T) {
 		t.Error(err)
 	}
 }
+*/

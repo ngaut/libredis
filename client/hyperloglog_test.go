@@ -16,27 +16,27 @@ func TestPFAdd(t *testing.T) {
 }
 
 func TestPFCount(t *testing.T) {
-	r.Del("hll", "hll2")
-	r.PFAdd("hll", "1", "2")
-	r.PFAdd("hll2", "a", "1")
-	n, err := r.PFCount("hll")
+	r.Del(encodeKeyWithTag("hll"), encodeKeyWithTag("hll2"))
+	r.PFAdd(encodeKeyWithTag("hll"), "1", "2")
+	r.PFAdd(encodeKeyWithTag("hll2"), "a", "1")
+	n, err := r.PFCount(encodeKeyWithTag("hll"))
 	if err != nil {
 		t.Error(err.Error())
 	}
 	if n != 2 {
 		t.Fail()
 	}
-	n, _ = r.PFCount("hll", "hll2")
+	n, _ = r.PFCount(encodeKeyWithTag("hll"), encodeKeyWithTag("hll2"))
 	if n != 3 {
 		t.Fail()
 	}
 }
 
 func TestPFMerge(t *testing.T) {
-	r.Del("hll", "hll2")
-	r.PFAdd("hll", "a")
-	r.PFAdd("hll2", "1")
-	if err := r.PFMerge("hll3", "hll", "hll2"); err != nil {
+	r.Del(encodeKeyWithTag("hll"), encodeKeyWithTag("hll2"))
+	r.PFAdd(encodeKeyWithTag("hll"), "a")
+	r.PFAdd(encodeKeyWithTag("hll2"), "1")
+	if err := r.PFMerge(encodeKeyWithTag("hll3"), encodeKeyWithTag("hll"), encodeKeyWithTag("hll2")); err != nil {
 		t.Error(err.Error())
 	}
 }

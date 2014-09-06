@@ -27,11 +27,12 @@ func TestSCard(t *testing.T) {
 }
 
 func TestSDiff(t *testing.T) {
-	r.Del("key1", "key2", "key3")
-	r.SAdd("key1", "a", "b", "c", "d")
-	r.SAdd("key2", "c")
-	r.SAdd("key3", "a", "c", "e")
-	if result, err := r.SDiff("key1", "key2", "key3"); err != nil {
+	r.Del(encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3"))
+	r.SAdd(encodeKeyWithTag("key1"), "a", "b", "c", "d")
+	r.SAdd(encodeKeyWithTag("key2"), "c")
+	r.SAdd(encodeKeyWithTag("key3"), "a", "c", "e")
+
+	if result, err := r.SDiff(encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3")); err != nil {
 		t.Error(err)
 	} else if len(result) != 2 {
 		t.Fail()
@@ -39,11 +40,11 @@ func TestSDiff(t *testing.T) {
 }
 
 func TestSDiffStore(t *testing.T) {
-	r.Del("key1", "key2", "key3")
-	r.SAdd("key1", "a", "b", "c", "d")
-	r.SAdd("key2", "c")
-	r.SAdd("key3", "a", "c", "e")
-	if n, err := r.SDiffStore("key", "key1", "key2", "key3"); err != nil {
+	r.Del(encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3"))
+	r.SAdd(encodeKeyWithTag("key1"), "a", "b", "c", "d")
+	r.SAdd(encodeKeyWithTag("key2"), "c")
+	r.SAdd(encodeKeyWithTag("key3"), "a", "c", "e")
+	if n, err := r.SDiffStore(encodeKeyWithTag("key"), encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3")); err != nil {
 		t.Error(err)
 	} else if n != 2 {
 		t.Fail()
@@ -51,23 +52,28 @@ func TestSDiffStore(t *testing.T) {
 }
 
 func TestSInter(t *testing.T) {
-	r.Del("key1", "key2", "key3")
-	r.SAdd("key1", "a", "b", "c", "d")
-	r.SAdd("key2", "c")
-	r.SAdd("key3", "a", "c", "e")
-	if result, err := r.SInter("key1", "key2", "key3"); err != nil {
+	r.Del(encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3"))
+	r.SAdd(encodeKeyWithTag("key1"), "a", "b", "c", "d")
+	r.SAdd(encodeKeyWithTag("key2"), "c")
+	r.SAdd(encodeKeyWithTag("key3"), "a", "c", "e")
+
+	if result, err := r.SInter(encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3")); err != nil {
 		t.Error(err)
 	} else if len(result) != 1 {
 		t.Fail()
 	}
 }
 
+func encodeKeyWithTag(key string) string {
+	return key + "{hash_tag}"
+}
+
 func TestSInterStore(t *testing.T) {
-	r.Del("key1", "key2", "key3")
-	r.SAdd("key1", "a", "b", "c", "d")
-	r.SAdd("key2", "c")
-	r.SAdd("key3", "a", "c", "e")
-	if n, err := r.SInterStore("key", "key1", "key2", "key3"); err != nil {
+	r.Del(encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3"))
+	r.SAdd(encodeKeyWithTag("key1"), "a", "b", "c", "d")
+	r.SAdd(encodeKeyWithTag("key2"), "c")
+	r.SAdd(encodeKeyWithTag("key3"), "a", "c", "e")
+	if n, err := r.SInterStore(encodeKeyWithTag("key"), encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3")); err != nil {
 		t.Error(err)
 	} else if n != 1 {
 		t.Fail()
@@ -100,9 +106,9 @@ func TestSMembers(t *testing.T) {
 }
 
 func TestSMove(t *testing.T) {
-	r.Del("key", "key1")
-	r.SAdd("key", "value")
-	if b, err := r.SMove("key", "key1", "value"); err != nil {
+	r.Del(encodeKeyWithTag("key"), encodeKeyWithTag("key1"))
+	r.SAdd(encodeKeyWithTag("key"), "value")
+	if b, err := r.SMove(encodeKeyWithTag("key"), encodeKeyWithTag("key1"), "value"); err != nil {
 		t.Error(err)
 	} else if !b {
 		t.Fail()
@@ -155,11 +161,11 @@ func TestSRem(t *testing.T) {
 }
 
 func TestSUnion(t *testing.T) {
-	r.Del("key1", "key2", "key3")
-	r.SAdd("key1", "a", "b", "c", "d")
-	r.SAdd("key2", "c")
-	r.SAdd("key3", "a", "c", "e")
-	if result, err := r.SUnion("key1", "key2", "key3"); err != nil {
+	r.Del(encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3"))
+	r.SAdd(encodeKeyWithTag("key1"), "a", "b", "c", "d")
+	r.SAdd(encodeKeyWithTag("key2"), "c")
+	r.SAdd(encodeKeyWithTag("key3"), "a", "c", "e")
+	if result, err := r.SUnion(encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3")); err != nil {
 		t.Error(err)
 	} else if len(result) != 5 {
 		t.Fail()
