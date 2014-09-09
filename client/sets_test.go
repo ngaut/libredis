@@ -173,11 +173,11 @@ func TestSUnion(t *testing.T) {
 }
 
 func TestSUnionStore(t *testing.T) {
-	r.Del("key1", "key2", "key3")
-	r.SAdd("key1", "a", "b", "c", "d")
-	r.SAdd("key2", "c")
-	r.SAdd("key3", "a", "c", "e")
-	if n, err := r.SUnionStore("key", "key1", "key2", "key3"); err != nil {
+	r.Del(encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3"))
+	r.SAdd(encodeKeyWithTag("key1"), "a", "b", "c", "d")
+	r.SAdd(encodeKeyWithTag("key2"), "c")
+	r.SAdd(encodeKeyWithTag("key3"), "a", "c", "e")
+	if n, err := r.SUnionStore(encodeKeyWithTag("key"), encodeKeyWithTag("key1"), encodeKeyWithTag("key2"), encodeKeyWithTag("key3")); err != nil {
 		t.Error(err)
 	} else if n != 5 {
 		t.Fail()

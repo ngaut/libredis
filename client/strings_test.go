@@ -204,21 +204,26 @@ func TestMGet(t *testing.T) {
 	}
 }
 
-/*
 func TestMSet(t *testing.T) {
 	pairs := map[string]string{
-		"key":  "value",
-		"key1": "value1",
+		encodeKeyWithTag("key"):  "value",
+		encodeKeyWithTag("key1"): "value1",
 	}
 	if err := r.MSet(pairs); err != nil {
 		t.Error(err)
 	}
-	value, _ := r.Get("key1")
+	value, _ := r.Get(encodeKeyWithTag("key1"))
 	if string(value) != "value1" {
+		t.Fail()
+	}
+
+	value, _ = r.Get(encodeKeyWithTag("key"))
+	if string(value) != "value" {
 		t.Fail()
 	}
 }
 
+/*
 func TestMSetnx(t *testing.T) {
 	r.Del("key")
 	r.Set("key1", "value")
