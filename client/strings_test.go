@@ -188,6 +188,7 @@ func TestIncrByFloat(t *testing.T) {
 }
 
 func TestMGet(t *testing.T) {
+	r.Del("key1")
 	r.Set("key", "value")
 	ret, err := r.MGet("key", "key1")
 	if err != nil {
